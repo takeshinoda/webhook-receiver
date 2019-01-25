@@ -1,7 +1,16 @@
 require 'sinatra'
 
-post '/webhook' do
-  logger.info "params: (#{params.inspect})"
+$stdout.sync = true
+
+post '/event' do
+  puts "evt params: "
+  puts request.body.read
+  204
+end
+
+post '/command' do
+  puts "cmd params: "
+  puts request.body.read
   204
 end
 
