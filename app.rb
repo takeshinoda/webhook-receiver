@@ -1,11 +1,17 @@
 require 'sinatra'
+require 'openssl'
 
 $stdout.sync = true
 
 post '/event' do
+  body = request.body.read
+
+
+
   puts "evt params: "
-  p request.env
-  puts request.body.read
+  puts body
+  puts OpenSSL::HMAC.hexdigest('sha256', 'dummy', 'https://takeshinoda-webhooker.herokuapp.com/event' + body)
+  puts request.env['HTTP_X_MODE_SIGNATURE']
   204
 end
 
