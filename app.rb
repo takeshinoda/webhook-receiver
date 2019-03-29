@@ -4,6 +4,7 @@ $stdout.sync = true
 
 post '/event' do
   puts "evt params: "
+  p request.env
   puts request.body.read
   204
 end
